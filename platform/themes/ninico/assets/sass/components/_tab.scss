@@ -1,0 +1,75 @@
+@use '../utils' as *;
+
+.tpnavbar {
+    display: flex;
+    justify-content: flex-end;
+    @media #{$xs} {
+        justify-content: start;
+    }
+
+    & .nav-tabs {
+        border-bottom: none;
+    }
+
+    & .nav-link {
+        border: none;
+        margin: 0;
+        padding: 0;
+        font-size: 16px;
+        font-weight: 600;
+        margin-inline-start: 50px;
+        color: var(--tp-text-body);
+        @media #{$md} {
+            margin-inline-start: 20px;
+        }
+        @media #{$xs} {
+            margin-inline-start: 0;
+            margin-inline-end: 20px;
+            margin-bottom: 30px;
+        }
+    }
+
+    & .nav-link.active {
+        color: var(--tp-text-primary);
+        text-decoration: underline;
+    }
+}
+
+.tpproductnav {
+    justify-content: center;
+    @media #{$xs} {
+        justify-content: start;
+    }
+
+    &.tpnavbar {
+        & .nav-link {
+            @media #{$lg} {
+                margin-inline-start: 20px;
+            }
+            @media #{$xl} {
+                margin-inline-start: 30px;
+            }
+        }
+    }
+}
+
+.tpproductall {
+    text-align: right;
+    @media #{$xs} {
+        text-align: left;
+        margin-bottom: 30px;
+    }
+
+    & a {
+        font-weight: 600;
+        font-size: 16px;
+
+        &:hover {
+            color: var(--tp-text-primary);
+        }
+
+        & i {
+            margin-inline-start: 8px;
+        }
+    }
+}

@@ -1,0 +1,57 @@
+# Dependencies & Build
+/node_modules
+/npm-debug.log
+yarn.lock
+bun.lockb
+
+# Environment & Sensitive configs
+.env
+.env.backup
+.env.production
+.env.testing
+/storage/*.key
+/storage/.license
+Homestead.json
+Homestead.yaml
+sftp-config.json
+.phpactor.json
+
+# Large Archives & Temp Dumps
+main.zip
+public.zip
+database.sql
+
+# Cache, Logs & Framework temporary files
+/storage/logs/*.log
+/storage/framework/cache/data/*
+!/storage/framework/cache/data/.gitignore
+/storage/framework/sessions/*
+!/storage/framework/sessions/.gitignore
+/storage/framework/views/*
+!/storage/framework/views/.gitignore
+/storage/framework/*.txt
+/storage/app/backup/*
+/storage/cache_keys.json
+/storage/installing
+/storage/installed
+/storage/framework/maintenance.php
+.phpunit.result.cache
+.php_cs.cache
+
+# IDE & OS files
+.DS_Store
+Thumbs.db
+__MACOSX
+/.idea
+/.vscode
+/.vagrant
+/.phpintel
+_ide_helper.php
+_ide_helper_models.php
+.phpstorm.meta.php
+.claude/
+.mcp.json
+.taskmaster/
+
+# Exclude tests
+/tests

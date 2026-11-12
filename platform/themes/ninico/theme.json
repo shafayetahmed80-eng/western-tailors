@@ -1,0 +1,10 @@
+{
+    "id": "botble/ninico",
+    "name": "Ninico",
+    "namespace": "Theme\\Ninico\\",
+    "description": "Ninico - Minimal eCommerce",
+    "author": "Botble Technologies",
+    "url": "https://botble.com",
+    "version": "1.0.0",
+    "required_plugins": []
+}
