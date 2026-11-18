@@ -9,6 +9,7 @@ bun.lockb
 .env.backup
 .env.production
 .env.testing
+.commit_prev
 /storage/*.key
 /storage/.license
 Homestead.json
