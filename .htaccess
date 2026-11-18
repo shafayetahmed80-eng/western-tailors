@@ -1,10 +1,22 @@
-RewriteEngine on
+<IfModule mod_rewrite.c>
+    RewriteEngine on
 
-# Redirect Trailing Slashes If Not A Folder...
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_URI} (.+)/$
-RewriteRule ^ %1 [L,R=301]
+    # Block direct access to sensitive files
+    <FilesMatch "(^\.env|\.git|composer\.(json|lock)|package\.(json|lock)|phpunit\.xml|artisan)$">
+        <IfModule mod_authz_core.c>
+            Require all denied
+        </IfModule>
+        <IfModule !mod_authz_core.c>
+            Order allow,deny
+            Deny from all
+        </IfModule>
+    </FilesMatch>
 
-RewriteCond %{REQUEST_URI} !^public
+    # Redirect Trailing Slashes If Not A Folder...
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_URI} (.+)/$
+    RewriteRule ^ %1 [L,R=301]
 
-RewriteRule ^(.*)$ public/$1 [L]
+    RewriteCond %{REQUEST_URI} !^public
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>

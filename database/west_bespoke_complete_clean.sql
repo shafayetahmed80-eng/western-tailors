@@ -16,14 +16,6 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Current Database: `west_bespoke`
---
-
-CREATE DATABASE /*!32312 IF NOT EXISTS*/ `west_bespoke` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */;
-
-USE `west_bespoke`;
-
---
 -- Table structure for table `activations`
 --
 
@@ -5098,4 +5090,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-11-13  0:36:20
+-- Dump completed on 2026-11-13  0:39:43

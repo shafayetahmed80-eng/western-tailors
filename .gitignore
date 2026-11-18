@@ -17,9 +17,11 @@ sftp-config.json
 .phpactor.json
 
 # Large Archives & Temp Dumps
-main.zip
-public.zip
-database.sql
+*.zip
+*.tar.gz
+*.out
+/*.sql
+!/database/west_bespoke_complete_clean.sql
 
 # Cache, Logs & Framework temporary files
 /storage/logs/*.log

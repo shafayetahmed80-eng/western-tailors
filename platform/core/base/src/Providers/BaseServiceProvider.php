@@ -176,6 +176,10 @@ class BaseServiceProvider extends ServiceProvider
 
     protected function configureIni(): void
     {
+        if ($this->app->runningInConsole()) {
+            return;
+        }
+
         static $memoryLimit = null;
         static $maxExecutionTime = null;
 
