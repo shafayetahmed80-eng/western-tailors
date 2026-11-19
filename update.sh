@@ -124,7 +124,8 @@ say "Downloading and merging new code"
 git merge --ff-only --quiet "origin/$BRANCH"
 
 say "Optimizing Composer dependencies"
-composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist
+composer install --no-dev --no-scripts --optimize-autoloader --no-interaction --prefer-dist
+php artisan package:discover --ansi
 
 say "Applying database migrations"
 php artisan migrate --force
