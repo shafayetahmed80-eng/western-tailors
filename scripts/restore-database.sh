@@ -63,20 +63,13 @@ DB_PASS="$(get_env_val DB_PASSWORD)"
 [ -n "$DB_NAME" ] || fail "DB_DATABASE is not set in .env."
 [ -n "$DB_USER" ] || fail "DB_USERNAME is not set in .env."
 
-OPTIONS="$(mktemp)"
-trap 'rm -f "$OPTIONS"' EXIT
-
-cat <<EOF > "$OPTIONS"
-[client]
-host=${DB_HOST:-127.0.0.1}
-port=${DB_PORT:-3306}
-user=$DB_USER
-password=$DB_PASS
-default-character-set=utf8mb4
-EOF
+HOST_ARG=()
+if [ "$DB_HOST" != "localhost" ] && [ -n "$DB_HOST" ]; then
+  HOST_ARG=(-h "$DB_HOST" -P "${DB_PORT:-3306}")
+fi
 
 echo "Restoring database..."
-gzip -dc "$FILE" | mysql --defaults-extra-file="$OPTIONS" "$DB_NAME"
+gzip -dc "$FILE" | MYSQL_PWD="$DB_PASS" mysql -u "$DB_USER" "${HOST_ARG[@]}" "$DB_NAME"
 
 echo "Clearing application cache..."
 if command -v php >/dev/null 2>&1; then

@@ -42,21 +42,17 @@ DB_PASS="$(get_env_val DB_PASSWORD)"
 mkdir -p "$DIR" || fail "cannot create $DIR."
 chmod 700 "$DIR" 2>/dev/null || true
 
-OPTIONS="$(mktemp)"
 ERRORS="$(mktemp)"
 PARTIAL="$(mktemp "$DIR/.partial-XXXXXX")"
-trap 'rm -f "$OPTIONS" "$ERRORS" "$PARTIAL"' EXIT
+trap 'rm -f "$ERRORS" "$PARTIAL"' EXIT
 
-cat <<EOF > "$OPTIONS"
-[client]
-host=${DB_HOST:-127.0.0.1}
-port=${DB_PORT:-3306}
-user=$DB_USER
-password=$DB_PASS
-default-character-set=utf8mb4
-EOF
+HOST_ARG=()
+if [ "$DB_HOST" != "localhost" ] && [ -n "$DB_HOST" ]; then
+  HOST_ARG=(-h "$DB_HOST" -P "${DB_PORT:-3306}")
+fi
 
-if ! mysqldump --defaults-extra-file="$OPTIONS" --single-transaction --quick --skip-lock-tables \
+if ! MYSQL_PWD="$DB_PASS" mysqldump -u "$DB_USER" "${HOST_ARG[@]}" \
+     --single-transaction --quick --skip-lock-tables \
      --default-character-set=utf8mb4 "$DB_NAME" 2>"$ERRORS" | gzip -c > "$PARTIAL"; then
   fail "mysqldump stopped: $(tail -n 3 "$ERRORS" | tr '\n' ' ')"
 fi
