@@ -82,7 +82,6 @@ fi
 
 command -v git >/dev/null 2>&1 || die "git is not available on this server."
 command -v php >/dev/null 2>&1 || die "php is not available on this server."
-command -v composer >/dev/null 2>&1 || die "composer is not available on this server."
 
 # Check for uncommitted server edits
 if [ -n "$(git status --porcelain --untracked-files=no)" ]; then
@@ -123,8 +122,7 @@ printf '%s\n' "$LOCAL" > .commit_prev
 say "Downloading and merging new code"
 git merge --ff-only --quiet "origin/$BRANCH"
 
-say "Optimizing Composer dependencies"
-composer install --no-dev --no-scripts --optimize-autoloader --no-interaction --prefer-dist
+say "Discovering application packages and plugins"
 php artisan package:discover --ansi
 
 say "Applying database migrations"
