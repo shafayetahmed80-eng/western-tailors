@@ -1056,5 +1056,13 @@ app()->booted(function (): void {
                     'default_value' => '#fcf6f4',
                 ]);
         });
+
+        Shortcode::register('bespoke-trust-badges', __('Bespoke Trust Badges'), __('Bespoke Atelier Heritage & Trust Badges'), function (ShortcodeCompiler $shortcode) {
+            return Theme::partial('shortcodes.bespoke-trust-badges.index', compact('shortcode'));
+        });
+
+        Shortcode::register('bespoke-journey', __('The Bespoke Journey'), __('4-Step Bespoke Tailoring Journey'), function (ShortcodeCompiler $shortcode) {
+            return Theme::partial('shortcodes.bespoke-journey.index', compact('shortcode'));
+        });
     }
 });
