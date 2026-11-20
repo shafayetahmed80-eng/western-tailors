@@ -103,6 +103,18 @@
                 padding: 3px 8px;
                 border-radius: 2px;
             }
+
+            /* Scroll-to-top layout harmony with WhatsApp Concierge */
+            .scroll-top.open {
+                bottom: 96px !important;
+                inset-inline-end: 32px !important;
+            }
+            @media (max-width: 768px) {
+                .scroll-top.open {
+                    bottom: 135px !important;
+                    inset-inline-end: 20px !important;
+                }
+            }
         </style>
 
         {!! Theme::header() !!}
@@ -113,6 +125,8 @@
         {!! Theme::partial('scroll-top') !!}
 
         @yield('content')
+
+        @include(Theme::getThemeNamespace('partials.whatsapp-concierge'))
 
         @if(is_plugin_active('ecommerce') && theme_option('bottom_mobile_menu_enabled', 'yes') === 'yes')
             @include(Theme::getThemeNamespace('partials.navigation-bar'))
