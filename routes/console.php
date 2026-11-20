@@ -155,3 +155,13 @@ Artisan::command('bespoke:repair-slugs', function () {
     $this->info("Done! Total repaired slugs: {$totalRepaired}.");
 })->purpose('Repair missing or empty slugs across all catalog and content models');
 
+Artisan::command('bespoke:apply-branding', function () {
+    $this->info('Applying Western Bespoke luxury branding, typography, and widgets...');
+
+    $migration = require database_path('migrations/2026_11_20_143000_update_western_bespoke_branding_and_widgets.php');
+    $migration->up();
+
+    $this->info('Western Bespoke luxury branding applied successfully!');
+})->purpose('Apply Western Bespoke luxury branding, typography, and widget cleanups');
+
+

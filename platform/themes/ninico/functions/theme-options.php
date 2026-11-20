@@ -21,12 +21,30 @@ app('events')->listen(RenderingThemeOptionSettings::class, function (): void {
                     ],
                 ],
                 [
+                    'id' => 'heading_font',
+                    'type' => 'googleFonts',
+                    'label' => __('Heading / Serif font'),
+                    'attributes' => [
+                        'name' => 'heading_font',
+                        'value' => 'Playfair Display',
+                    ],
+                ],
+                [
                     'id' => 'primary_color',
                     'type' => 'customColor',
                     'label' => __('Primary color'),
                     'attributes' => [
                         'name' => 'primary_color',
-                        'value' => '#d51243',
+                        'value' => '#0A192F',
+                    ],
+                ],
+                [
+                    'id' => 'accent_gold_color',
+                    'type' => 'customColor',
+                    'label' => __('Luxury Accent (Gold)'),
+                    'attributes' => [
+                        'name' => 'accent_gold_color',
+                        'value' => '#C5A880',
                     ],
                 ],
                 [

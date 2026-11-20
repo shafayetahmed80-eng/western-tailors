@@ -1,10 +1,10 @@
 {
     "id": "botble/ninico",
-    "name": "Ninico",
+    "name": "Western Bespoke",
     "namespace": "Theme\\Ninico\\",
-    "description": "Ninico - Minimal eCommerce",
-    "author": "Botble Technologies",
-    "url": "https://botble.com",
-    "version": "1.0.0",
+    "description": "Western Bespoke - Master Tailoring & Luxury Atelier",
+    "author": "Western Bespoke",
+    "url": "https://westernbespoke.com",
+    "version": "1.1.0",
     "required_plugins": []
 }
