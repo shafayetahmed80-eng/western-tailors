@@ -225,6 +225,37 @@ app('events')->listen(RenderingThemeOptionSettings::class, function (): void {
             ],
         ])
         ->setField([
+            'id' => 'whatsapp_number',
+            'section_id' => 'opt-text-subsection-general',
+            'type' => 'text',
+            'label' => __('WhatsApp Concierge Number'),
+            'attributes' => [
+                'name' => 'whatsapp_number',
+                'value' => '+8801700000000',
+                'options' => [
+                    'class' => 'form-control',
+                    'placeholder' => '+8801700000000',
+                ],
+            ],
+        ])
+        ->setField([
+            'id' => 'whatsapp_concierge_enabled',
+            'section_id' => 'opt-text-subsection-general',
+            'type' => 'customSelect',
+            'label' => __('Enable Floating WhatsApp Concierge?'),
+            'attributes' => [
+                'name' => 'whatsapp_concierge_enabled',
+                'list' => [
+                    'yes' => __('Yes'),
+                    'no' => __('No'),
+                ],
+                'value' => 'yes',
+                'options' => [
+                    'class' => 'form-control',
+                ],
+            ],
+        ])
+        ->setField([
             'id' => 'cart_footer_description',
             'section_id' => 'opt-text-subsection-ecommerce',
             'type' => 'text',

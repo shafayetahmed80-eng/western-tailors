@@ -59,4 +59,36 @@
             </div>
         </div>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            try {
+                var urlParams = new URLSearchParams(window.location.search);
+                var service = urlParams.get('service');
+                var product = urlParams.get('product');
+
+                if (service === 'fitting' || product) {
+                    var subjectInput = document.querySelector('input[name="subject"]');
+                    var contentInput = document.querySelector('textarea[name="content"]');
+
+                    var fittingSubject = product 
+                        ? 'Bespoke Fitting Appointment: ' + product 
+                        : 'Bespoke Atelier Fitting Appointment Request';
+
+                    var fittingMessage = 'Hello Western Bespoke Atelier,\n\nI would like to schedule a private master measurement and fitting consultation' 
+                        + (product ? ' for: ' + product + '.' : '.') 
+                        + '\n\nPlease advise convenient dates and available atelier appointment slots.\n\nThank you.';
+
+                    if (subjectInput && !subjectInput.value) {
+                        subjectInput.value = fittingSubject;
+                    }
+                    if (contentInput && !contentInput.value) {
+                        contentInput.value = fittingMessage;
+                    }
+                }
+            } catch (e) {
+                console.warn('Fitting prefill note:', e);
+            }
+        });
+    </script>
 </section>
