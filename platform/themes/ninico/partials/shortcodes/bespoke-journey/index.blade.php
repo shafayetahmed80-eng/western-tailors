@@ -75,7 +75,7 @@
 
         <div class="row text-center mt-50">
             <div class="col-12">
-                <a href="{{ route('public.contact') }}" class="btn-bespoke-gold" style="font-size: 0.9rem; padding: 14px 34px;">
+                <a href="{{ url('contact') }}" class="btn-bespoke-gold" style="font-size: 0.9rem; padding: 14px 34px;">
                     <i class="fal fa-calendar-check mr-8"></i> Book a Studio Fitting Consultation
                 </a>
             </div>
