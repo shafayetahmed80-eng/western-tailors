@@ -164,4 +164,14 @@ Artisan::command('bespoke:apply-branding', function () {
     $this->info('Western Bespoke luxury branding applied successfully!');
 })->purpose('Apply Western Bespoke luxury branding, typography, and widget cleanups');
 
+Artisan::command('bespoke:apply-homepage-story', function () {
+    $this->info('Applying Bespoke Journey and Trust Badges to Homepage...');
+
+    $migration = require database_path('migrations/2026_11_20_205500_update_homepage_with_bespoke_journey_and_trust_badges.php');
+    $migration->up();
+
+    $this->info('Homepage updated successfully with Bespoke Journey and Trust Badges!');
+})->purpose('Apply Bespoke Journey and Trust Badges to Homepage');
+
+
 
