@@ -435,31 +435,10 @@
         color: #ffffff;
     }
 
-    /* Mobile Responsive Adaptation */
+    /* Mobile Responsive Adaptation - Handled elegantly via mobile bottom navigation */
     @media (max-width: 768px) {
         .bespoke-whatsapp-widget {
-            inset-inline-end: 18px;
-            bottom: 74px; /* Offset to stay clear of sticky bottom navigation */
-        }
-
-        .bespoke-wa-trigger {
-            width: 50px;
-            height: 50px;
-        }
-
-        .bespoke-wa-trigger svg {
-            width: 24px;
-            height: 24px;
-        }
-
-        .bespoke-wa-tooltip {
             display: none !important;
-        }
-
-        .bespoke-wa-card {
-            width: calc(100vw - 36px);
-            inset-inline-end: -6px;
-            bottom: calc(100% + 12px);
         }
     }
 </style>
