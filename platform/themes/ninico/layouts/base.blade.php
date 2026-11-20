@@ -104,15 +104,15 @@
                 border-radius: 2px;
             }
 
-            /* Scroll-to-top layout harmony with WhatsApp Concierge */
+            /* Scroll-to-top layout harmony with Mobile Navigation & WhatsApp Concierge */
             .scroll-top.open {
                 bottom: 96px !important;
                 inset-inline-end: 32px !important;
             }
             @media (max-width: 768px) {
                 .scroll-top.open {
-                    bottom: 135px !important;
-                    inset-inline-end: 20px !important;
+                    bottom: 74px !important;
+                    inset-inline-end: 18px !important;
                 }
             }
         </style>
