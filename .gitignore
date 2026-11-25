@@ -38,6 +38,7 @@ sftp-config.json
 /storage/installing
 /storage/installed
 /storage/framework/maintenance.php
+/public/storage/fonts/
 .phpunit.result.cache
 .php_cs.cache
 
