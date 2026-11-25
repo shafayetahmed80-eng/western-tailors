@@ -58,16 +58,22 @@ Welcome to **Western Bespoke (ওয়েস্টার্ন বেস্প�
 
 ---
 
-## 3. Mandatory Live Deployment Protocol
+## 3. Mandatory Live Deployment Protocol (Automated CD + Manual Fallback)
 
 **NEVER manually edit files on the live Hostinger server.**
 **NEVER deploy via manual FTP/file overwrites.**
 
-Whenever changes are merged into `main`, the live deployment MUST be executed exclusively through the automated deployment script via SSH:
-
-```bash
-ssh -i 'C:\Users\Shafayet Ahmed\.ssh\id_ed25519' -p 65002 u555947128@178.16.136.179 'bash ~/westernbespoke_app/update.sh'
-```
+1. **Primary Method — Automatic GitHub Actions CD (Zero-Config on any laptop):**
+   - Whenever a PR is merged into `main`, GitHub Actions (`.github/workflows/deploy.yml`) **automatically triggers** and executes `bash ~/westernbespoke_app/update.sh` on Hostinger using repository secrets (`HOSTINGER_SSH_KEY`, `HOSTINGER_HOST`, `HOSTINGER_USER`, `HOSTINGER_PORT`).
+   - Monitor the deployment run directly via GitHub CLI:
+     ```bash
+     gh run list --workflow=deploy.yml --limit 3
+     gh run watch <run-id>
+     ```
+2. **Fallback Method — Direct SSH Execution (if SSH key is present locally):**
+   ```bash
+   ssh -i 'C:\Users\Shafayet Ahmed\.ssh\id_ed25519' -p 65002 u555947128@178.16.136.179 'bash ~/westernbespoke_app/update.sh'
+   ```
 
 ### What `update.sh` executes automatically on the server:
 1. Verifies no uncommitted/manual edits exist on the server (prevents data loss).
