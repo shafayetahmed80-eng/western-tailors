@@ -9,9 +9,10 @@ Welcome to **Western Bespoke (ওয়েস্টার্ন বেস্প�
 - **Platform:** Botble CMS 7.6.4+ (Laravel 12.51.0, PHP 8.3)
 - **Active Theme:** `ninico` (`platform/themes/ninico/`)
 - **Branding & Aesthetics:**
-  - Primary Color: Midnight Navy (`#0A192F`)
-  - Accent Color: Sartorial Gold (`#C5A880`)
-  - Typography: `Jost` (body/UI) & `Playfair Display` (headings/serif luxury titles)
+  - Primary Color: Deep Emerald (`#0B1C18`) / Emerald Night (`#06110E`)
+  - Surface Colors: Travertine (`#F2EFE9`) & Ivory (`#FAF8F5`)
+  - Accent Color: Antique Brass (`#C6A364`)
+  - Typography: `Montserrat` (body/UI) & `Cormorant Garamond` (headings/editorial serif luxury titles)
 - **Live Production URL:** `https://westernbespoke.com`
 - **Hosting Environment:** Hostinger Business Plan, LiteSpeed Web Server, PHP 8.3.37
 - **Live Server Path:** `/home/u555947128/westernbespoke_app`

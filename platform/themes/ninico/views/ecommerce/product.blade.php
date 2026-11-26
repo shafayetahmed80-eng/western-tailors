@@ -195,23 +195,24 @@
                 </div>
 
                 {{-- Bespoke Atelier Conversion Actions --}}
-                <div class="bespoke-pdp-actions mt-3 mb-4 p-3 rounded" style="background: #faf8f5; border: 1px solid #e8dfd3;">
+                <div class="bespoke-pdp-actions mt-3 mb-4 p-3 rounded-3" style="background: #FAF8F5; border: 1px solid rgba(198, 163, 100, 0.45);">
                     <div class="d-flex align-items-center justify-content-between mb-2">
-                        <span class="text-uppercase fw-bold" style="font-size: 0.75rem; letter-spacing: 0.08em; color: #0A192F;">
-                            <i class="fal fa-crown me-1" style="color: #C5A880;"></i> {{ __('Bespoke Tailoring Service') }}
+                        <span class="text-uppercase fw-semibold" style="font-size: 0.72rem; letter-spacing: 0.14em; color: #0B1C18;">
+                            <i class="fal fa-crown me-1" style="color: #C6A364;"></i> {{ __('Bespoke Tailoring Service') }}
                         </span>
-                        <span class="badge-bespoke" style="font-size: 0.65rem;">{{ __('Custom Fit') }}</span>
+                        <span class="badge-bespoke" style="font-size: 0.62rem;">{{ __('Custom Fit') }}</span>
                     </div>
                     <div class="row g-2">
                         <div class="col-sm-6">
-                            <a
-                                href="{{ url('contact') }}?service=fitting&product={{ urlencode($product->name) }}"
+                            <button
+                                type="button"
+                                onclick="window.openAtelierFitting ? window.openAtelierFitting(@js($product->name)) : (window.location.href = '{{ url('contact') }}?service=fitting&product={{ urlencode($product->name) }}')"
                                 class="btn w-100 bespoke-btn-appointment d-flex align-items-center justify-content-center gap-2"
-                                style="background: #0A192F; color: #C5A880; border: 1px solid #0A192F; font-size: 0.82rem; font-weight: 600; padding: 10px 14px; text-transform: uppercase; letter-spacing: 0.04em;"
+                                style="background: #C6A364; color: #06110E; border: 1px solid #C6A364; border-radius: 10px; font-size: 0.76rem; font-weight: 600; padding: 11px 14px; text-transform: uppercase; letter-spacing: 0.12em;"
                             >
                                 <i class="fal fa-calendar-check"></i>
-                                <span>{{ __('Book Atelier Fitting') }}</span>
-                            </a>
+                                <span>{{ __('Book Private Fitting') }}</span>
+                            </button>
                         </div>
                         <div class="col-sm-6">
                             @php
@@ -226,17 +227,17 @@
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 class="btn w-100 bespoke-btn-whatsapp d-flex align-items-center justify-content-center gap-2"
-                                style="background: #25D366; color: #ffffff; border: 1px solid #25D366; font-size: 0.82rem; font-weight: 600; padding: 10px 14px; text-transform: uppercase; letter-spacing: 0.04em;"
+                                style="background: #0B1C18; color: #F2EFE9; border: 1px solid rgba(198, 163, 100, 0.5); border-radius: 10px; font-size: 0.76rem; font-weight: 600; padding: 11px 14px; text-transform: uppercase; letter-spacing: 0.12em;"
                             >
-                                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+                                <svg viewBox="0 0 24 24" width="15" height="15" fill="#C6A364">
                                     <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
                                 </svg>
-                                <span>{{ __('Tailor WhatsApp Inquiry') }}</span>
+                                <span>{{ __('WhatsApp Concierge') }}</span>
                             </a>
                         </div>
                     </div>
-                    <div class="mt-2 text-muted" style="font-size: 0.78rem; line-height: 1.4;">
-                        <i class="fal fa-shield-check text-success me-1"></i>
+                    <div class="mt-2" style="color: #5C635F; font-size: 0.76rem; line-height: 1.45;">
+                        <i class="fal fa-shield-check me-1" style="color: #C6A364;"></i>
                         {{ __('Includes anatomical master measurements, baste trial fitting, and our 100% Flawless Fit Guarantee.') }}
                     </div>
                 </div>

@@ -120,7 +120,7 @@
         height: 58px;
         border-radius: 50%;
         background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
-        border: 2px solid #C5A880;
+        border: 2px solid #C6A364;
         box-shadow: 0 8px 24px rgba(10, 25, 47, 0.25), 0 2px 6px rgba(37, 211, 102, 0.4);
         display: flex;
         align-items: center;
@@ -182,9 +182,9 @@
         inset-inline-end: calc(100% + 14px);
         top: 50%;
         transform: translateY(-50%);
-        background: #0A192F;
+        background: #0B1C18;
         color: #F8F9FA;
-        border: 1px solid #C5A880;
+        border: 1px solid #C6A364;
         padding: 6px 14px;
         border-radius: 20px;
         font-size: 0.78rem;
@@ -242,12 +242,12 @@
 
     /* Card Header */
     .bespoke-wa-header {
-        background: #0A192F;
+        background: #0B1C18;
         padding: 16px 18px;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        border-bottom: 2px solid #C5A880;
+        border-bottom: 2px solid #C6A364;
     }
 
     .bespoke-wa-header-brand {
@@ -261,15 +261,15 @@
         width: 40px;
         height: 40px;
         border-radius: 50%;
-        background: #112240;
-        border: 1px solid #C5A880;
+        background: #06110E;
+        border: 1px solid #C6A364;
         display: flex;
         align-items: center;
         justify-content: center;
     }
 
     .bespoke-wa-monogram {
-        color: #C5A880;
+        color: #C6A364;
         font-family: var(--heading-font, serif);
         font-weight: 700;
         font-size: 0.95rem;
@@ -284,7 +284,7 @@
         height: 10px;
         border-radius: 50%;
         background: #25D366;
-        border: 2px solid #0A192F;
+        border: 2px solid #0B1C18;
     }
 
     .bespoke-wa-title {
@@ -296,7 +296,7 @@
     }
 
     .bespoke-wa-subtitle {
-        color: #C5A880;
+        color: #C6A364;
         font-size: 0.72rem;
         letter-spacing: 0.03em;
         text-transform: uppercase;
@@ -316,7 +316,7 @@
 
     .bespoke-wa-close-btn:hover {
         opacity: 1;
-        color: #C5A880;
+        color: #C6A364;
     }
 
     /* Card Body */
@@ -374,7 +374,7 @@
         border-radius: 6px;
         padding: 6px 10px;
         font-size: 0.76rem;
-        color: #0A192F;
+        color: #0B1C18;
         text-align: left;
         cursor: pointer;
         transition: all 0.2s;
@@ -382,9 +382,9 @@
     }
 
     .bespoke-wa-chip:hover {
-        background: #0A192F;
-        color: #C5A880;
-        border-color: #0A192F;
+        background: #0B1C18;
+        color: #C6A364;
+        border-color: #0B1C18;
     }
 
     .bespoke-wa-input-wrapper {
@@ -406,7 +406,7 @@
     }
 
     .bespoke-wa-input:focus {
-        border-color: #0A192F;
+        border-color: #0B1C18;
         box-shadow: 0 0 0 2px rgba(10, 25, 47, 0.1);
     }
 

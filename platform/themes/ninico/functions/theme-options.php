@@ -17,7 +17,7 @@ app('events')->listen(RenderingThemeOptionSettings::class, function (): void {
                     'label' => __('Primary font'),
                     'attributes' => [
                         'name' => 'primary_font',
-                        'value' => 'Jost',
+                        'value' => 'Montserrat',
                     ],
                 ],
                 [
@@ -26,7 +26,7 @@ app('events')->listen(RenderingThemeOptionSettings::class, function (): void {
                     'label' => __('Heading / Serif font'),
                     'attributes' => [
                         'name' => 'heading_font',
-                        'value' => 'Playfair Display',
+                        'value' => 'Cormorant Garamond',
                     ],
                 ],
                 [
@@ -35,16 +35,16 @@ app('events')->listen(RenderingThemeOptionSettings::class, function (): void {
                     'label' => __('Primary color'),
                     'attributes' => [
                         'name' => 'primary_color',
-                        'value' => '#0A192F',
+                        'value' => '#0B1C18',
                     ],
                 ],
                 [
                     'id' => 'accent_gold_color',
                     'type' => 'customColor',
-                    'label' => __('Luxury Accent (Gold)'),
+                    'label' => __('Luxury Accent (Brass / Gold)'),
                     'attributes' => [
                         'name' => 'accent_gold_color',
-                        'value' => '#C5A880',
+                        'value' => '#C6A364',
                     ],
                 ],
                 [
@@ -86,7 +86,7 @@ app('events')->listen(RenderingThemeOptionSettings::class, function (): void {
                     'label' => __('Footer background color'),
                     'attributes' => [
                         'name' => 'footer_background_color',
-                        'value' => '#F8F8F8',
+                        'value' => '#06110E',
                     ],
                 ],
                 [
@@ -95,7 +95,7 @@ app('events')->listen(RenderingThemeOptionSettings::class, function (): void {
                     'label' => __('Footer text color'),
                     'attributes' => [
                         'name' => 'footer_text_color',
-                        'value' => '#000000',
+                        'value' => '#F2EFE9',
                     ],
                 ],
                 [
@@ -104,7 +104,7 @@ app('events')->listen(RenderingThemeOptionSettings::class, function (): void {
                     'label' => __('Footer text muted color'),
                     'attributes' => [
                         'name' => 'footer_text_muted_color',
-                        'value' => '#686666',
+                        'value' => '#A8A39A',
                     ],
                 ],
                 [
@@ -113,7 +113,7 @@ app('events')->listen(RenderingThemeOptionSettings::class, function (): void {
                     'label' => __('Footer border color'),
                     'attributes' => [
                         'name' => 'footer_border_color',
-                        'value' => '#E0E0E0',
+                        'value' => '#2A3833',
                     ],
                 ],
                 [
@@ -122,25 +122,25 @@ app('events')->listen(RenderingThemeOptionSettings::class, function (): void {
                     'label' => __('Footer bottom background color'),
                     'attributes' => [
                         'name' => 'footer_bottom_background_color',
-                        'value' => '#ededed',
+                        'value' => '#06110E',
                     ],
                 ],
                 ColorField::make()
                     ->name('header_background_color')
                     ->label(__('Header background color'))
-                    ->defaultValue('#fff'),
+                    ->defaultValue('#0B1C18'),
                 ColorField::make()
                     ->name('header_text_color')
                     ->label(__('Header text color'))
-                    ->defaultValue('#040404'),
+                    ->defaultValue('#F2EFE9'),
                 ColorField::make()
                     ->name('header_menu_text_color')
                     ->label(__('Header menu text color'))
-                    ->defaultValue('#040404'),
+                    ->defaultValue('#F2EFE9'),
                 ColorField::make()
                     ->name('header_menu_text_hover_color')
                     ->label(__('Header menu text hover color'))
-                    ->defaultValue('#d51243'),
+                    ->defaultValue('#C6A364'),
             ],
         ])
         ->setField([

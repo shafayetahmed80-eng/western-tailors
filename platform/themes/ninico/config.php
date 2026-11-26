@@ -45,6 +45,7 @@ return [
             $theme->asset()->usePath()->add('magnific-popup-css', 'plugins/magnific-popup/magnific-popup.css');
             $theme->asset()->usePath()->add('jquery-ui-css', 'plugins/jquery-ui/jquery-ui.css');
             $theme->asset()->usePath()->add('theme-css', 'css/theme.css', version: $version);
+            $theme->asset()->usePath()->add('atelier-css', 'css/atelier.css', ['theme-css'], version: $version . '.3');
 
             $theme->asset()->container('footer')->usePath()->add('jquery', 'plugins/jquery/jquery-3.7.1.min.js');
             $theme->asset()->container('footer')->usePath()->add('waypoints-js', 'js/waypoints.js');
@@ -61,6 +62,7 @@ return [
             $theme->asset()->container('footer')->usePath()->add('app-js', 'js/app.js', version: $version);
             $theme->asset()->container('footer')->usePath()->add('theme-js', 'js/theme.js', ['countdown-js'], version: $version);
             $theme->asset()->container('footer')->usePath()->add('ecommerce-js', 'js/ecommerce.js', ['lightgallery-js'], version: $version);
+            $theme->asset()->container('footer')->usePath()->add('atelier-js', 'js/atelier.js', ['jquery'], version: $version . '.1');
 
             if (function_exists('shortcode')) {
                 $theme->composer([

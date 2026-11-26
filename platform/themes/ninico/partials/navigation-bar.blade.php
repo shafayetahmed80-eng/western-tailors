@@ -1,251 +1,84 @@
 @php
-    $rawPhone = theme_option('whatsapp_number') ?: theme_option('hotline', '8801700000000');
-    $cleanPhone = preg_replace('/[^0-9]/', '', $rawPhone);
-    if (empty($cleanPhone)) {
-        $cleanPhone = '8801700000000';
-    }
-
     $isHome = request()->is('/') || request()->routeIs('public.index');
     $isCatalog = request()->is('products*') || request()->is('product-categories*') || request()->is('product-collections*');
-    $isFitting = request()->is('contact*') && request('service') === 'fitting';
 @endphp
 
-<nav class="navigation-bar bespoke-mobile-nav" aria-label="{{ __('Mobile Navigation') }}">
-    <ul class="bespoke-nav-list mb-0">
-        {{-- 1. Home --}}
-        <li class="bespoke-nav-item {{ $isHome ? 'active' : '' }}">
-            <a href="{{ BaseHelper::getHomepageUrl() }}" title="{{ __('Home') }}">
-                <i class="fal fa-home"></i>
-                <span>{{ __('Home') }}</span>
-            </a>
-        </li>
+<nav class="navigation-bar wb-bottom-nav" aria-label="{{ __('Mobile Bottom Navigation') }}">
+    {{-- 1. Home --}}
+    <a
+        href="{{ BaseHelper::getHomepageUrl() }}"
+        @if($isHome) data-wb-scroll="hero" @endif
+        data-wb-tab="home"
+        class="wb-bottom-nav__item {{ $isHome ? 'is-active' : '' }}"
+    >
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955a1.126 1.126 0 011.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75" />
+        </svg>
+        <span>{{ __('Home') }}</span>
+    </a>
 
-        {{-- 2. Collections / Suits --}}
-        <li class="bespoke-nav-item {{ $isCatalog ? 'active' : '' }}">
-            <a href="{{ url('products') }}" title="{{ __('Collections') }}">
-                <i class="fal fa-layer-group"></i>
-                <span>{{ __('Collections') }}</span>
-            </a>
-        </li>
+    {{-- 2. Archive --}}
+    <a
+        href="{{ $isHome ? '#archive' : (is_plugin_active('ecommerce') ? route('public.products') : url('products')) }}"
+        @if($isHome) data-wb-scroll="archive" @endif
+        data-wb-tab="archive"
+        class="wb-bottom-nav__item {{ $isCatalog ? 'is-active' : '' }}"
+    >
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6A2.25 2.25 0 016 3.75h2.25A2.25 2.25 0 0110.5 6v2.25a2.25 2.25 0 01-2.25 2.25H6a2.25 2.25 0 01-2.25-2.25V6zM3.75 15.75A2.25 2.25 0 016 13.5h2.25a2.25 2.25 0 012.25 2.25V18a2.25 2.25 0 01-2.25 2.25H6A2.25 2.25 0 013.75 18v-2.25zM13.5 6a2.25 2.25 0 012.25-2.25H18A2.25 2.25 0 0120.25 6v2.25A2.25 2.25 0 0118 10.5h-2.25a2.25 2.25 0 01-2.25-2.25V6zM13.5 15.75a2.25 2.25 0 012.25-2.25H18a2.25 2.25 0 012.25 2.25V18A2.25 2.25 0 0118 20.25h-2.25A2.25 2.25 0 0113.5 18v-2.25z" />
+        </svg>
+        <span>{{ __('Archive') }}</span>
+    </a>
 
-        {{-- 3. Center Hero: Book Atelier Fitting --}}
-        <li class="bespoke-nav-item bespoke-nav-center {{ $isFitting ? 'active' : '' }}">
-            <a href="{{ url('contact') }}?service=fitting" title="{{ __('Book Fitting') }}">
-                <div class="bespoke-center-circle">
-                    <i class="fal fa-calendar-check"></i>
-                </div>
-                <span class="bespoke-center-label">{{ __('Fitting') }}</span>
-            </a>
-        </li>
+    {{-- 3. Highlighted Center Tab: Book Fit (Antique Brass) --}}
+    <button
+        type="button"
+        onclick="window.openAtelierFitting && window.openAtelierFitting('Charcoal Double-Breasted Suit')"
+        class="wb-bottom-nav__center"
+    >
+        <span class="wb-bottom-nav__center-circle">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
+            </svg>
+        </span>
+        <span class="wb-bottom-nav__center-label">{{ __('Book Fit') }}</span>
+    </button>
 
-        {{-- 4. WhatsApp Concierge --}}
-        <li class="bespoke-nav-item">
-            <a
-                href="https://wa.me/{{ $cleanPhone }}?text={{ urlencode('Hello Western Bespoke Atelier, I would like to inquire about custom tailoring and consultation.') }}"
-                target="_blank"
-                rel="noopener noreferrer"
-                title="{{ __('Master Tailor WhatsApp') }}"
-            >
-                <i class="fab fa-whatsapp bespoke-nav-wa-icon"></i>
-                <span>{{ __('Concierge') }}</span>
-            </a>
-        </li>
+    {{-- 4. Bag with Live Badge --}}
+    @if (EcommerceHelper::isCartEnabled())
+        <button
+            type="button"
+            class="wb-bottom-nav__item tp-cart-toggle"
+            aria-label="{{ __('Open Bag') }}"
+        >
+            <span class="wb-bottom-nav__bag-wrap header-cart wb-cart-count-host">
+                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 10.5V6a3.75 3.75 0 10-7.5 0v4.5m11.356-1.993l1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 01-1.12-1.243l1.264-12A1.125 1.125 0 015.513 7.5h12.974c.576 0 1.059.435 1.119 1.007z" />
+                </svg>
+                <span class="tp-product-count wb-bottom-nav__badge">{{ Cart::instance('cart')->count() }}</span>
+            </span>
+            <span>{{ __('Bag') }}</span>
+        </button>
+    @else
+        <a href="{{ route('customer.overview') }}" class="wb-bottom-nav__item">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0" />
+            </svg>
+            <span>{{ __('Account') }}</span>
+        </a>
+    @endif
 
-        {{-- 5. Bag (Cart Drawer) --}}
-        @if (EcommerceHelper::isCartEnabled())
-            <li class="bespoke-nav-item">
-                <a role="button" href="javascript:void(0)" class="tp-cart-toggle" title="{{ __('Shopping Bag') }}">
-                    <div class="header-cart p-relative d-inline-block">
-                        <i class="fal fa-shopping-bag"></i>
-                        <span class="tp-product-count bespoke-cart-badge">{{ Cart::instance('cart')->count() }}</span>
-                    </div>
-                    <span>{{ __('Bag') }}</span>
-                </a>
-            </li>
-        @else
-            <li class="bespoke-nav-item">
-                <a href="{{ route('customer.overview') }}" title="{{ __('Account') }}">
-                    <i class="fal fa-user"></i>
-                    <span>{{ __('Account') }}</span>
-                </a>
-            </li>
-        @endif
-    </ul>
+    {{-- 5. Concierge --}}
+    <a
+        href="{{ $isHome ? '#concierge' : url('contact') }}"
+        @if($isHome) data-wb-scroll="concierge" @endif
+        data-wb-tab="concierge"
+        class="wb-bottom-nav__item"
+    >
+        <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+        </svg>
+        <span>{{ __('Concierge') }}</span>
+    </a>
 </nav>
-
-<style>
-    /* Sartorial Luxury Mobile Bottom Navigation Bar */
-    .bespoke-mobile-nav {
-        display: none;
-    }
-
-    @media screen and (max-width: 768px) {
-        body {
-            padding-bottom: calc(62px + env(safe-area-inset-bottom, 0px)) !important;
-        }
-
-        .navigation-bar.bespoke-mobile-nav {
-            display: block !important;
-            position: fixed !important;
-            bottom: 0 !important;
-            left: 0 !important;
-            right: 0 !important;
-            width: 100% !important;
-            height: auto !important;
-            background: rgba(255, 255, 255, 0.98) !important;
-            backdrop-filter: blur(12px) !important;
-            -webkit-backdrop-filter: blur(12px) !important;
-            border-top: 1px solid rgba(197, 168, 128, 0.35) !important;
-            box-shadow: 0 -4px 20px rgba(10, 25, 47, 0.08) !important;
-            z-index: 1020 !important;
-            padding: 4px 6px calc(4px + env(safe-area-inset-bottom, 0px)) !important;
-        }
-
-        .bespoke-nav-list {
-            display: flex !important;
-            align-items: flex-end !important;
-            justify-content: space-around !important;
-            list-style: none !important;
-            padding: 0 !important;
-            margin: 0 !important;
-        }
-
-        .bespoke-nav-item {
-            flex: 1 1 0 !important;
-            max-width: 20% !important;
-            text-align: center !important;
-            position: relative !important;
-            padding: 2px 0 !important;
-        }
-
-        .bespoke-nav-item a {
-            display: flex !important;
-            flex-direction: column !important;
-            align-items: center !important;
-            justify-content: center !important;
-            text-decoration: none !important;
-            color: #4A5568 !important;
-            padding: 4px 2px !important;
-            transition: all 0.2s ease !important;
-        }
-
-        .bespoke-nav-item a i {
-            display: block !important;
-            font-size: 19px !important;
-            line-height: 1.2 !important;
-            margin-bottom: 3px !important;
-            color: #4A5568 !important;
-            transition: color 0.2s ease, transform 0.2s ease !important;
-        }
-
-        .bespoke-nav-item a span {
-            display: block !important;
-            font-size: 10px !important;
-            font-weight: 500 !important;
-            letter-spacing: 0.03em !important;
-            font-family: var(--primary-font, 'Jost', sans-serif) !important;
-            color: #4A5568 !important;
-            white-space: nowrap !important;
-            line-height: 1.1 !important;
-            transition: color 0.2s ease !important;
-        }
-
-        /* Active Tab Styling */
-        .bespoke-nav-item.active a i,
-        .bespoke-nav-item a:hover i {
-            color: #0A192F !important;
-            transform: translateY(-1px) !important;
-        }
-
-        .bespoke-nav-item.active a span,
-        .bespoke-nav-item a:hover span {
-            color: #0A192F !important;
-            font-weight: 700 !important;
-        }
-
-        .bespoke-nav-item.active::after {
-            content: '';
-            position: absolute;
-            bottom: -2px;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 4px;
-            height: 4px;
-            border-radius: 50%;
-            background: #C5A880;
-        }
-
-        /* Center Hero Button (Book Fitting) */
-        .bespoke-nav-center {
-            position: relative !important;
-            top: -12px !important;
-        }
-
-        .bespoke-center-circle {
-            width: 46px !important;
-            height: 46px !important;
-            border-radius: 50% !important;
-            background: linear-gradient(135deg, #C5A880 0%, #D4AF37 100%) !important;
-            border: 3px solid #ffffff !important;
-            box-shadow: 0 4px 14px rgba(197, 168, 128, 0.5), 0 2px 6px rgba(10, 25, 47, 0.15) !important;
-            display: flex !important;
-            align-items: center !important;
-            justify-content: center !important;
-            margin: 0 auto 3px !important;
-            transition: transform 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
-        }
-
-        .bespoke-nav-center a:hover .bespoke-center-circle,
-        .bespoke-nav-center.active .bespoke-center-circle {
-            transform: scale(1.08) translateY(-2px) !important;
-            box-shadow: 0 6px 18px rgba(197, 168, 128, 0.65), 0 3px 8px rgba(10, 25, 47, 0.2) !important;
-        }
-
-        .bespoke-center-circle i {
-            font-size: 20px !important;
-            color: #0A192F !important;
-            margin-bottom: 0 !important;
-            line-height: 1 !important;
-        }
-
-        .bespoke-center-label {
-            font-size: 9.5px !important;
-            font-weight: 700 !important;
-            color: #0A192F !important;
-            text-transform: uppercase !important;
-            letter-spacing: 0.05em !important;
-        }
-
-        /* WhatsApp Tab */
-        .bespoke-nav-wa-icon {
-            color: #25D366 !important;
-        }
-
-        .bespoke-nav-item a:hover .bespoke-nav-wa-icon {
-            color: #1EBE5D !important;
-        }
-
-        /* Cart Badge */
-        .header-cart.p-relative {
-            position: relative;
-            display: inline-block;
-        }
-
-        .bespoke-cart-badge {
-            position: absolute !important;
-            top: -6px !important;
-            inset-inline-end: -10px !important;
-            background: #0A192F !important;
-            color: #C5A880 !important;
-            border: 1px solid #C5A880 !important;
-            border-radius: 10px !important;
-            font-size: 9px !important;
-            font-weight: 700 !important;
-            padding: 1px 4px !important;
-            min-width: 15px !important;
-            height: 15px !important;
-            line-height: 13px !important;
-            text-align: center !important;
-        }
-    }
-</style>
