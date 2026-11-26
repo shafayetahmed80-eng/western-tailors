@@ -10,6 +10,8 @@ Route::group(['controller' => NinicoController::class, 'middleware' => ['web', '
             Route::get('products', 'ajaxGetProducts')->name('products');
             Route::get('cart', 'ajaxCart')->name('cart');
             Route::get('search-products', 'ajaxSearchProducts')->name('search-products');
+            Route::post('atelier-fitting', 'ajaxBookFitting')->middleware('throttle:15,1')->name('atelier-fitting');
+            Route::post('atelier-newsletter', 'ajaxSubscribeNewsletter')->middleware('throttle:15,1')->name('atelier-newsletter');
         });
     });
 });

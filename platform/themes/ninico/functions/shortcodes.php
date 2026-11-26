@@ -1056,13 +1056,46 @@ app()->booted(function (): void {
                     'default_value' => '#fcf6f4',
                 ]);
         });
-
-        Shortcode::register('bespoke-trust-badges', __('Bespoke Trust Badges'), __('Bespoke Atelier Heritage & Trust Badges'), function (ShortcodeCompiler $shortcode) {
-            return Theme::partial('shortcodes.bespoke-trust-badges.index', compact('shortcode'));
-        });
-
-        Shortcode::register('bespoke-journey', __('The Bespoke Journey'), __('4-Step Bespoke Tailoring Journey'), function (ShortcodeCompiler $shortcode) {
-            return Theme::partial('shortcodes.bespoke-journey.index', compact('shortcode'));
-        });
     }
+
+    Shortcode::register('bespoke-trust-badges', __('Bespoke Trust Badges'), __('Bespoke Atelier Heritage & Trust Badges'), function (ShortcodeCompiler $shortcode) {
+        return Theme::partial('shortcodes.bespoke-trust-badges.index', compact('shortcode'));
+    });
+
+    Shortcode::register('bespoke-journey', __('The Bespoke Journey'), __('4-Step Bespoke Tailoring Journey'), function (ShortcodeCompiler $shortcode) {
+        return Theme::partial('shortcodes.bespoke-journey.index', compact('shortcode'));
+    });
+
+    Shortcode::register('atelier-hero', __('Atelier Editorial Hero'), __('Western Bespoke Royal Tailoring Hero'), function (ShortcodeCompiler $shortcode) {
+        return Theme::partial('shortcodes.atelier-hero.index', compact('shortcode'));
+    });
+
+    Shortcode::setAdminConfig('atelier-hero', function (array $attributes) {
+        return ShortcodeForm::createFromArray($attributes)
+            ->add('eyebrow', TextField::class, TextFieldOption::make()->label(__('Eyebrow label'))->defaultValue('Dhaka Atelier • Est. Heritage'))
+            ->add('edition_badge', TextField::class, TextFieldOption::make()->label(__('Edition badge'))->defaultValue('2026 Edit'))
+            ->add('subtitle', TextField::class, TextFieldOption::make()->label(__('Subtitle'))->defaultValue('Savile Row Precision Meets Royal Heritage — Hand-cut bespoke suits & heirloom couture.'))
+            ->add('background_image', 'mediaImage', ['label' => __('Hero background image')]);
+    });
+
+    Shortcode::register('atelier-archive', __('The Atelier Archive (01–04)'), __('Swipeable Signature Editions Archive'), function (ShortcodeCompiler $shortcode) {
+        return Theme::partial('shortcodes.atelier-archive.index', compact('shortcode'));
+    });
+
+    Shortcode::register('atelier-craft', __('Crafted by Hand & 4-Stage Journey'), __('Interactive Mill Swatches & 4-Stage Bespoke Timeline'), function (ShortcodeCompiler $shortcode) {
+        return Theme::partial('shortcodes.atelier-craft.index', compact('shortcode'));
+    });
+
+    Shortcode::register('atelier-masterpieces', __('Curated Masterpieces Catalog'), __('Filterable Bespoke Masterpieces Product Grid'), function (ShortcodeCompiler $shortcode) {
+        return Theme::partial('shortcodes.atelier-masterpieces.index', compact('shortcode'));
+    });
+
+    Shortcode::setAdminConfig('atelier-masterpieces', function (array $attributes) {
+        return ShortcodeForm::createFromArray($attributes)
+            ->add('per_category', NumberField::class, NumberFieldOption::make()->label(__('Products per category tab'))->defaultValue(4));
+    });
+
+    Shortcode::register('atelier-concierge', __('Dhaka Atelier Concierge'), __('Banani & Dhanmondi Salon Appointment & WhatsApp Card'), function (ShortcodeCompiler $shortcode) {
+        return Theme::partial('shortcodes.atelier-concierge.index', compact('shortcode'));
+    });
 });
