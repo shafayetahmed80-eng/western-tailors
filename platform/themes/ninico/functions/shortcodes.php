@@ -28,6 +28,7 @@ use Botble\Shortcode\Compilers\Shortcode as ShortcodeCompiler;
 use Botble\Shortcode\Facades\Shortcode;
 use Botble\Shortcode\Forms\Fields\ShortcodeTagsField;
 use Botble\Shortcode\Forms\ShortcodeForm;
+use Botble\SimpleSlider\Models\SimpleSlider;
 use Botble\Team\Models\Team;
 use Botble\Testimonial\Models\Testimonial;
 use Botble\Theme\Facades\Theme;
@@ -1071,11 +1072,27 @@ app()->booted(function (): void {
     });
 
     Shortcode::setAdminConfig('atelier-hero', function (array $attributes) {
-        return ShortcodeForm::createFromArray($attributes)
+        $form = ShortcodeForm::createFromArray($attributes)
             ->add('eyebrow', TextField::class, TextFieldOption::make()->label(__('Eyebrow label'))->defaultValue('Dhaka Atelier • Est. Heritage'))
             ->add('edition_badge', TextField::class, TextFieldOption::make()->label(__('Edition badge'))->defaultValue('2026 Edit'))
-            ->add('subtitle', TextField::class, TextFieldOption::make()->label(__('Subtitle'))->defaultValue('Savile Row Precision Meets Royal Heritage — Hand-cut bespoke suits & heirloom couture.'))
-            ->add('background_image', 'mediaImage', ['label' => __('Hero background image')]);
+            ->add('subtitle', TextField::class, TextFieldOption::make()->label(__('Subtitle'))->defaultValue('Savile Row Precision Meets Royal Heritage — Hand-cut bespoke suits & heirloom couture.'));
+
+        if (is_plugin_active('simple-slider') && class_exists(SimpleSlider::class)) {
+            $sliderChoices = SimpleSlider::query()->wherePublished()->pluck('name', 'key')->all();
+            if ($sliderChoices !== []) {
+                $form->add(
+                    'slider_key',
+                    SelectField::class,
+                    SelectFieldOption::make()
+                        ->label(__('Hero Simple Slider'))
+                        ->choices($sliderChoices)
+                        ->selected(Arr::get($attributes, 'slider_key', 'slider-home-1'))
+                        ->helperText(__('Carousel background slides pull dynamically from Admin → Simple Sliders.'))
+                );
+            }
+        }
+
+        return $form->add('background_image', 'mediaImage', ['label' => __('Fallback hero background image')]);
     });
 
     Shortcode::register('atelier-archive', __('The Atelier Archive (01–04)'), __('Swipeable Signature Editions Archive'), function (ShortcodeCompiler $shortcode) {
